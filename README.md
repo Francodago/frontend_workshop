@@ -1,2 +1,2 @@
 # git_test
-hello there!!
+hello there!! and bye
