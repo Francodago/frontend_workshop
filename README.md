@@ -1,2 +1,2 @@
 # git_test
-hello there!! and bye
+This is going to be css practice repo!!
