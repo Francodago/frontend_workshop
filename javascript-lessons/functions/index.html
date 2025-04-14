@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions Exercises</title>
+</head>
+<body>
+    <script>
+//Basic function practice
+let addNum = function(num1, num2){
+    let result = console.log(`The result of the addition is: ${num1+num2}`)
+    return result
+}
+// addNum(2,2)
+//Greeting function. Take the user's name and shows a greeting
+function greeting(){
+  let person = prompt("hello, What is your name?")
+  if (person ===null || person ===""){
+console.log('the user cancelled the prompt')
+  }else console.log("Hello, "+person+". How are you today?")
+}
+// greeting()
+//Check if the number is even or odd
+let numCheck =()=>{
+    let input= prompt("Please enter a number")
+    if(input%2===0){
+        console.log("The number "+input+" is even")
+    }
+    else{console.log("The number "+input+" is odd")}
+}
+// numCheck()
+//Calculate the factorial of a number
+//iterative solution
+function factorial(n){
+let result=1;
+for(let i = 1; i <= n; i++){
+    result *=i;
+}
+return result;
+}
+// console.log(factorial(5))
+
+
+//recursive method
+let factorial2=function(n){
+if(n===0){
+    return 1
+}
+return n*factorial2(n-1)
+}
+// console.log(factorial2(5))
+
+//Modern js
+//Implement recursion with a ternary operator to compress the solution further.
+const factorial3= n => n===0 ? 1: n * factorial3(n-1);
+// console.log(factorial3(5))
+
+//reverse a string
+function reverseStr(str){
+    let result = str.split("").reverse().join("")
+    console.log(result)
+    return result
+}
+reverseStr("hello");
+
+// IIFE = self-executing anonymous function
+
+//Standard IIFE
+(function greeting(){
+    console.log("This is an IIFE")
+    return "Hello world"
+})();
+//arrow variant
+((name)=>{
+console.log(name+" wants to eat pizza but he needs to buy it")
+})("pepe");
+
+
+// async IIFE
+(async () => {
+  
+})();
+
+//function that finds the largest number of an array
+let largestNum= (numbers)=>{
+let myArray = [2,3,5,8,54,1];
+console.log("The largest number of my array is "+ Math.max(...myArray))
+
+return Math.max(...myArray)
+};
+largestNum()
+//pass any array as an argument and give the result
+let theLargestNum = (numbers) => {
+    console.log("The largest number of my array is " + Math.max(...numbers));
+    return Math.max(...numbers);
+};
+
+console.log(theLargestNum([2, 3, 5, 8, 54, 1])); // 54
+
+let getNegativeNumbers = function(numbers){
+return numbers.filter((num)=>num <0)
+};
+console.log(getNegativeNumbers([-2, 3, -6, 8, -1]))
+
+//traditional method
+function showNegativeNumbers(numbers){
+return numbers.filter(function(num){
+    return num <0;
+});
+}
+let myArray=[1, -2, -3, 4, 7, -5, 6, -8, -9]
+let negativeArrays = showNegativeNumbers(myArray);
+console.log(negativeArrays);
+    </script>
+</body>
+</html>
