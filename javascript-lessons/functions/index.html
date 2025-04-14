@@ -112,6 +112,118 @@ return numbers.filter(function(num){
 let myArray=[1, -2, -3, 4, 7, -5, 6, -8, -9]
 let negativeArrays = showNegativeNumbers(myArray);
 console.log(negativeArrays);
+
+//function that returns true if a word is palindrome
+//A palindrome is a word or sentence that’s spelled the same way both forward and backward, ignoring punctuation, case, and spacing.
+//Note. You’ll need to remove all non-alphanumeric characters (punctuation, spaces and symbols) and turn everything lower case in order to check for palindromes.
+//Which Regular Expression will we need to pass the (palindrome(“00 (: /-\ :) 0–0”) should return true)test case?
+function palindrome(str){
+     // Step 1. Lowercase the string and use the RegExp to remove unwanted characters from it
+    let regEx=/[\W_]/g; //or let regEx = /[^A-Za-z0-9]/g;
+    let lowStr = str.toLowerCase().replace(regEx, '');
+    // str.toLowerCase() = "A man, a plan, a canal. Panama".toLowerCase()
+    // str.replace(/[\W_]/g, '') = "a man, a plan, a canal. panama".replace(/[\W_]/g, '') = "amanaplanacanalpanama"
+    // let lowStr = "amanaplanacanalpanama";
+    let reverseStr = lowStr.split('').reverse().join('');
+    // So, "amanaplanacanalpanama".split('').reverse().join('') = "amanaplanacanalpanama";
+    // And, let reverseStr = "amanaplanacanalpanama";
+
+      // Step 3. Check if reverseStr is strictly equals to lowRegStr and return a Boolean
+    return lowStr===reverseStr;
+}
+console.log(palindrome("A man, a plan, a canal. Panama"));
+console.log(palindrome("eye"));
+
+//create a function that takes an array and an number, and returns how many times that numbers appears
+const countOccurrences = (myArray, myNumber)=>
+myArray.reduce((a,n)=>(n===myNumber? a+1:a), 0);
+
+console.log(countOccurrences([1,2,3,4,4,5,6,3,7,4],4));
+//Standard function declaration
+function newCountOccurrences(myArray, myNumber) {
+  return myArray.reduce(function (a, n) {
+     // `a` is the accumulator (keeps count), `n` is the current element in the array.
+    if (n === myNumber) {
+          // If the current element equals `myNumber`, increase the count (`a + 1`).
+      return a + 1;
+    } else {
+      return a;
+       // If it doesn't match, return the count (`a` stays the same).
+    }
+  }, 0);
+}
+console.log(newCountOccurrences([1,2,3,4,4,5,6,3,7,4],4));
+
+//function that returns the sum of all numbers in an array
+let arraySum = function(myArray){
+let sum =0;
+for(let i=0;i<myArray.length;i++){
+    sum = sum+myArray[i]
+}
+return sum;
+}
+console.log(arraySum([1,2,3]))
+//pass an anonymous function to setTimeOut to log message after 2 seconds
+setTimeout(function(){
+    console.log("This is a callback function that logs after 2 secons")
+},2000);
+//simple calculator function
+let calculator = ()=>{
+    //take the operator input
+    const operator =prompt("Enter the operator ( either +, -, *, / ): ");
+    //take the operand input
+    const num1=parseFloat(prompt("Enter the first number:"));
+    const num2=parseFloat(prompt("Enter the second number:"));
+// Check if the operator is valid
+if (operator === '+' || operator === '-' || operator === '*' || operator === '/') {
+    
+    let result;
+    if (operator ==='+'){
+        result =num1 +num2;
+    }else if(operator==='-'){
+        result=num1 - num2;
+    }else if(operator ==='*'){
+        result=num1*num2;
+    }else if(operator==='/'){
+        if(num2===0){
+            alert("Cannot divide by 0")
+        }else{
+        result =num1/num2;
+        }
+    }
+
+    console.log(`The operation is: ${num1} ${operator} ${num2}, and the result is: ${result}`)
+}else{
+// If the operator is not valid, show an error message
+alert("Invalid operator. Please use one of the following: +, -, *, /.");
+}
+}
+//  calculator();
+
+ //function that returns the current day of the week using Date
+ function getDayOfWeek() {
+    const today = new Date();  // Get the current date
+    const dayIndex = today.getDay();  // Get the day of the week as a number (0-6)
+
+    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+    return daysOfWeek[dayIndex];  // Return the day of the week based on the index
+}
+
+console.log(getDayOfWeek());  
+
+//function to capitalize the first letter of each word in a sentence
+
+let capitalizeLetter = function(sentence){
+const words = sentence.split(" ");
+for(let i=0; i<words.length; i++){
+    words[i]=words[i][0].toUpperCase()+words[i].substring(1);
+}
+return words.join(" ");
+}
+console.log(capitalizeLetter("hello this is a test"))
+
+
     </script>
 </body>
 </html>
