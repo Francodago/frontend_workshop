@@ -223,7 +223,26 @@ return words.join(" ");
 }
 console.log(capitalizeLetter("hello this is a test"))
 
+//function that makes the Fizz Buzz game
+let fizzBuzz = function(){
+    let userInput = parseInt(prompt("Please enter the number you would like to FizzBuzz up to:"));
+    for(let i=1; i<=userInput; i++){
 
+        if(i%3===0 && i%5===0){
+            console.log("FizzBuzz");
+        }
+        else if(i%3===0){
+            console.log("Fizz");
+        }
+        else if(i%5===0){
+        console.log("Buzz");
+        }
+        else{
+            console.log(i);
+        }
+        }
+    }
+fizzBuzz()
     </script>
 </body>
 </html>
