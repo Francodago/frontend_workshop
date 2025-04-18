@@ -242,7 +242,71 @@ let fizzBuzz = function(){
         }
         }
     }
-fizzBuzz()
+// fizzBuzz()
+
+//Recursive functions (JS Recursion)
+//Recursion is a programming technique where a function calls itself repeatedly to solve a problem.
+
+//function to countdown till 1
+let countdown =count =>{
+console.log(count);
+if(count>1){
+count = count -1;
+// call countdown with new value of count (recursion)
+countdown(count);
+}else return;
+};
+// countdown(10);
+
+//recursive function that finds the factorial of a number
+function factorial(num){
+//base case. recurse only if number is greater than 0
+if(num>1){
+    return num * factorial(num-1);
+}else
+    return 1;
+};
+let myNum=5;
+let y=factorial(myNum);
+console.log(`The factorial of ${myNum} is ${y}`);
+//Each return num * factorial(num - 1) is building up a math problem that is solved only after reaching the base case (return 1).
+
+//Write a function to find the nth Fibonacci number.
+function fibonacci(n){
+//base case
+if(n===1){
+    return 0;
+}else if(n==2){
+return 1;
+}
+return fibonacci(n-1)+fibonacci(n-2);
+
+};
+console.log("fibonacci(5)"+fibonacci(5));
+console.log("fibonacci(8)"+fibonacci(8));
+//fibonacci(n) gives you the n-th Fibonacci number —NOT the whole sequence, just the last (n-th) number.
+//using for loop
+function fibonacci(num) {
+    let num1 = 0;
+    let num2 = 1;
+    let sum;
+    if (num === 1) {
+        return num1;
+    } else if (num === 2) {
+        return num2;
+    } else {
+        for (let i = 3; i <= num; i++) {
+            sum = num1 + num2;
+            num1 = num2;
+            num2 = sum;
+        }
+        return num2;
+    }
+}
+
+console.log("Fibonacci(5): " + fibonacci(5));
+console.log("Fibonacci(8): " + fibonacci(8));
+
     </script>
 </body>
 </html>
