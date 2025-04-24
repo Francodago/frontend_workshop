@@ -147,3 +147,103 @@ console.log(user);
 
 //Loops exercises
 
+const cars =["BMW","Volvo","Mini"]
+let text ="";
+console.log(text);
+for(let x of cars){
+   text+=x
+};
+console.log(text);
+
+//reverse an array with a for loop
+let reverseArray =(arr)=>{
+for(let i=0;i<Math.floor(arr.length/2);i++){
+   let temp=arr[i];
+   arr[i]=arr[arr.length-1-i];
+   arr[arr.length-1-i]=temp;
+}
+return arr;
+};
+console.log(reverseArray([1,2,3,4,5]));
+
+//check for palindrome using whiile loop
+let palindrome =(str)=>{
+let newStr = str.replace(/[^0-9a-z]/gi, '').toLowerCase();
+let strArray = newStr.split('');
+let strArrayDup = strArray.slice();//this is the dup version
+let strReverse = strArray.reverse();//we duplicate the arr because .reverse() changes (mutates) the original array.
+let i = 0;
+
+while (i < strArray.length) { 
+   if (strArrayDup[i] !== strReverse[i]) {
+     return false;
+   }
+   i++;
+ }
+ return true;
+}
+console.log(palindrome("rotator"));
+
+//sum of all positive numbers using a do while loop
+
+let sumAll =(arr)=>{
+let i=0;
+let sum=0;
+do{
+sum+= arr[i];
+i++;
+}while(i<arr.length);
+return sum;
+
+};
+console.log(sumAll([1,2,3,4,5]))
+
+//capitalize first letter of each word
+
+let capitalizeStr=(str)=>{
+const words =str.split(" ");
+  let result = [];
+
+  for (let word of words) {
+    let capitalized = word[0].toUpperCase() + word.slice(1);
+    result.push(capitalized);
+  }
+
+  return result.join(" ");
+};
+console.log(capitalizeStr("hello this is a test"));
+
+//count the vowels in a string using a for loop
+let vowelCounter =(str)=>{
+const vowels=["a","e","i","o","u"];
+let count=0;
+for(char of str.toLowerCase()){
+   if(vowels.includes(char)){
+      count++
+   }
+}
+return count;
+
+};
+console.log(vowelCounter("hello this function will count how many vowels this string has"));
+
+//find the longest word in a sentence
+let findLargest=(str)=>{
+let splitStr=str.split(" ");
+let largestWord="";
+for(let i=0;i<splitStr.length;i++){
+   // If the i'th item is greater than largest string
+   // then overwrite the largest string with the i'th value
+   if (splitStr[i].length > largestWord.length) {
+   largestWord = splitStr[i];
+}
+};
+return largestWord;
+}
+console.log(findLargest("i want to go to the gym for a shoulder workout"));
+
+
+
+
+
+
