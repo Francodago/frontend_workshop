@@ -21,30 +21,38 @@ body{
     gap: 10px;
   } */
   .container {
-    display:inline-grid;
-    grid-template: 40px 40px 40px 40px 40px / 40px 40px 40px 40px 40px;
+    display:grid;
+   grid-template-columns:[full-start] 1fr [main-start] 2fr 2fr [main-end full-end];
     background-color: rgb(187, 239, 248);
-    grid-template-areas:
-    "living-room living-room living-room living-room living-room"
+    width: 800px;
+    border: 2px solid red;
+    
+  
+    /* grid-template-areas:
+     "living-room living-room living-room living-room living-room"
     "living-room living-room living-room living-room living-room"
     "bedroom bedroom bathroom kitchen kitchen"
     "bedroom bedroom bathroom kitchen kitchen"
-    "closet closet   ....     ....    ...."    
+    "closet closet   ....     ....    ...."      */
   }
 
-  .room {
+   .room {
     border: 1px solid rgb(74, 10, 134);
     font-size: 50%;
-    text-align: center;
+    text-align: start;
   }
-  
+  #living-room{
+    grid-column: main-start/main-end;
+  }
+  /* 
   #living-room {
-    /* grid-column-start: 1;
+     grid-column-start: 1;
     grid-column-end: 6;
     grid-row-start: 1;
-    grid-row-end: 3; */
-    /* grid-area: 1 / 1 / 3 / 6; */
+    grid-row-end: 3; 
+     grid-area: 1 / 1 / 3 / 6; 
     grid-area: living-room;
+    
   }
 
   #kitchen {
@@ -61,4 +69,4 @@ body{
   
   #closet {
     grid-area: closet;
-  }
+  } */
