@@ -183,3 +183,5 @@ function User(name) {
       alert(`Inherited: ${prop}`); // Inherited: eats
     }
   }
+
+  
