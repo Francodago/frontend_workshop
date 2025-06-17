@@ -1,0 +1,19 @@
+*, *::before, *::after{
+    box-sizing: border-box;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+font-size: 'system-ui', 'sans-serif';
+min-height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+h1{
+    border: 1px solid lightgreen;
+    font-weight: 300;
+    padding: 1rem;
+}
