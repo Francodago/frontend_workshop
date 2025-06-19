@@ -345,3 +345,62 @@ user1.send("Hi there!");
 user2.send("Hey!");
  //send(message) doesn't directly message another user — it passes the message and the sender (this) 
  // to the chatroom (mediator), which handles the communication logic. 
+
+
+ //Singleton pattern
+ class SingletonClass{
+    constructor(name =""){
+        if(!!SingletonClass.instance){
+            return SingletonClass.instance;
+        }
+        SingletonClass.instance =this;
+        this.name =name;
+        return this;
+        
+    }
+    getName(){
+    return this.name;
+    }
+ }
+ const instanceOne = new SingletonClass("One");
+const instanceTwo = new SingletonClass("Two");
+const instanceThree = new SingletonClass();
+
+console.log(`Name of instanceOne is "${instanceOne.getName()}"`);
+console.log(`Name of instanceTwo is "${instanceTwo.getName()}"`);
+console.log(`Name of instanceThree is "${instanceThree.getName()}"`);
+
+//extending the class
+class Extending extends SingletonClass {
+    shoutName() {
+        return this.name.toUpperCase();
+    }
+}
+const A = new Extending();
+
+// console.log("getName" in A);
+// console.log("shoutName" in A);
+//Why? Because the instance was created sometime ago, while we defined instanceOne. 
+// The extension process can't even start, because SingletonClass constructor returns the instance first thing.
+//example 2
+const Singleton =(function(){
+let instance;
+function createInstance(){
+    return{message:"I'm the only instance!",
+        showNMessage(){
+            return this.message;
+        },
+    };
+}
+return {
+    getInstance:function(){
+        if(!instance){
+            instance =createInstance();
+        }
+        return instance;
+    },
+};
+})();
+const singleton1 = Singleton.getInstance();
+const singleton2 = Singleton.getInstance();
+console.log(singleton1 === singleton2); // true
