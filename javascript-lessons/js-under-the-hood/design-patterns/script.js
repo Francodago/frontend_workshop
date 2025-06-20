@@ -65,7 +65,6 @@ return this.multiplyCommand.execute(newValue);
         return this.AddCommand.undo(newValue);
     }
 }
-
 // const addCommand =new AddCommand(10);
 // const newValue =addCommand.execute(10);
 // console.log(newValue);
@@ -80,6 +79,142 @@ console.log(calculator.value);
 // const add = calculator.add(10);
 // console.log(calculator.value);
 // console.log(add);
+
+//another example
+class Command{
+    execute(){
+
+    }
+}
+class FindDriverCOmmand extends Command{
+execute(){
+   console.log("Finding a new driver")
+}
+}
+class CalculateFareCommand extends Command{
+    execute(){
+        console.log("Calulating the fare")
+    }
+}
+function requestRide(){
+    const commands =[new FindDriverCOmmand(),
+        new CalculateFareCommand(),
+    ];
+    for(let i=0; i < commands.length;i++){
+        commands[i].execute();
+    }
+}
+requestRide();
+//another example
+//Suppose we are creating a text editor with commands like copy,paste, and undo.
+//We want to make sure thee operations can be done and undone and that they can be triggered from various parts of the application.
+//command interface:
+class MyCommand{
+    execute(){
+        throw new Error("Execute method should  be implemented");
+        }
+}
+//step 2: create the command classes for each operation
+class CopyCommand extends MyCommand{
+    constructor(editor){
+        super();
+        this.editor =editor;
+        this.backup='';
+    }
+    execute(){
+        this.backup =this.editor.getSelection();
+        this.editor.clipboard =this.backup;
+    }
+}
+class PasteCommand extends MyCommand{
+     constructor(editor){
+        super();
+        this.editor =editor;
+        this.backup='';
+    }
+     execute(){
+        this.backup =this.editor.text;
+     this.editor.replaceSelection(this.editor.clipboard);
+    }
+    undo(){
+        this.editor.text =this.backup;
+    }
+}
+class UndoCommand extends MyCommand{
+    constructor(history){
+        super();
+        this.history =history;
+    }
+    execute(){
+        if(this.history.length > 0){
+            const command = this.history.pop();
+            if(command.undo){
+                command.undo()
+            }
+        }
+    }
+}
+// step 3: iplement the receiver editor
+//the editor is the receiver who knows how to perform the actual operations.
+class Editor{
+    constructor(){
+        this.text='';
+        this.clipboard='';
+    }
+    getSelection(){
+        //return the selected text
+        return 'Selected text';
+
+}
+replaceSelection(text){
+    //replaces the selected text with the provided text
+this.text +=text;
+}
+}
+//step 4: Set up the invoker
+//the invoker is responsible for initiating commands and keeping a history of undo operations
+
+class CommandHistory{
+    constructor(){
+        this.history =[];
+    }
+    push(command){
+    this.history.push(command)
+}
+pop(){
+    return this.history.pop();
+}
+get length() {
+    return this.history.length;
+  }
+
+}
+class Application{
+    constructor(){
+        this.history =new CommandHistory();
+        this.editor =new Editor();
+    }
+    executeCommand(command){
+        command.execute();
+        if(command instanceof UndoCommand === false){
+            this.history.push(command);
+        }
+    }
+}
+//Step 5: tie everything together
+//Now we will simulate user actions by creating an instance of application and executing commands
+ const app =new Application();
+ const copyCommand = new CopyCommand(app.editor);
+ const pasteCommand = new PasteCommand(app.editor);
+ const undoCommand =new UndoCommand(app.history);
+
+ app.executeCommand(copyCommand);
+ app.executeCommand(pasteCommand);
+ console.log(app.editor.text)//output: selected text
+ 
+ app.executeCommand(undoCommand);
+ console.log(app.editor.text);//output: (empty string)
+ console.log(`[${app.editor.text}]`);
 
 //factory Pattern
 const createUser = ({ firstName, lastName, email }) => ({
